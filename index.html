@@ -1,0 +1,78 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <script language="javascript" type="text/javascript" src="libraries/p5.js"></script>
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <script language="javascript" src="libraries/p5.dom.js"></script>
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+  <script language="javascript" type="text/javascript" src="atomos-sketch.js"></script>
+  <!-- this line removes any default padding and style. you might only need one of these values set. -->
+  <style>
+	  body {padding: 0; margin: 0;} 
+	  #tablabotones {width: 800px;}			
+	  
+	  #botones1,#botones3,#botones5 {  
+		  			text-align: left;
+		  			}
+	  #botones2,#botones4,#botones6 {  
+		  			text-align: right;
+		  			}	
+	   
+	  button { width:75;}
+	    #centro {   display:flex;
+		  			justify-content:center;
+	  			    background-color:darkgrey;  }
+	  
+	  	#maindiv {   display:flex;
+		  			justify-content:center;
+	  			    background-color:darkgrey;  }
+  </style>
+</head>
+
+  <body>
+	
+	<div id="centro">
+	</div>
+	
+	<div id="maindiv">
+	<table id="tablabotones">
+	<tr>
+		<td id="botones1">
+		<button type="button" id="hidrogeno" onclick="atomo.act(1)">Hidrógeno</button>
+		</td>
+		<td id="botones2">	
+		<button type="button" id="helio" onclick="atomo.act(2)">Helio</button>
+		</td>	
+	</tr>	
+	<tr>
+		<td id="botones3">
+		<button type="button" id="litio" onclick="atomo.act(3)">Litio</button>
+		<button type="button" id="berilio" onclick="atomo.act(4)">Berilio</button>
+		</td>
+		<td id="botones4">
+		<button type="button" id="boro" onclick="atomo.act(5)">Boro</button>
+		<button type="button" id="carbono" onclick="atomo.act(6)">Carbono</button>
+		<button type="button" id="nitrogeno" onclick="atomo.act(7)">Nitrógeno</button>
+		<button type="button" id="oxigeno" onclick="atomo.act(8)">Oxígeno</button>
+		<button type="button" id="fluor" onclick="atomo.act(9)">Flúor</button>
+		<button type="button" id="neon" onclick="atomo.act(10)">Neón</button>
+		</td>	
+	</tr>
+	<tr>
+		<td id="botones5">
+		<button type="button" id="sodio" onclick="atomo.act(11)">Sodio</button>
+		<button type="button" id="magnesio" onclick="atomo.act(12)">Magnesio</button>
+		</td>
+		<td id="botones6">
+		<button type="button" id="aluminio" onclick="atomo.act(13)">Aluminio</button>
+		<button type="button" id="silicio" onclick="atomo.act(14)">Silicio</button>
+		<button type="button" id="fosforo" onclick="atomo.act(15)">Fósforo</button>
+		<button type="button" id="azufre" onclick="atomo.act(16)">Azufre</button>
+		<button type="button" id="cloro" onclick="atomo.act(17)">Cloro</button>
+		<button type="button" id="argon" onclick="atomo.act(18)">Argón</button>
+		</td>
+	</tr>
+	</table>
+	</div>
+	</body>
+</html>
