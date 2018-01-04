@@ -1,19 +1,52 @@
-
-var canvwidth = 480;
+//variables that will determine the width and height of the canvas object used by the p5.js library to draw
+var canvwidth = 800; 
 var canvheight = 480;
+//arrays that contain the proton, neutron and electron objects
 var proto1 = [];
 var neutro1 = [];
 var electro1 = [];
 var muestras = [];
+//big container for every variable of the virtual atom drawn on the canvas
 var atomo = {	
+//set the x and y coordinates of the atom to be half the value of the canvas width and height so it's drawn in the exact center
 	x : canvwidth / 2,
 	y : canvheight / 2,
-	dibujar: function() {		
-		var x = atomo.x;
-		var y = atomo.y;
-		this.angulorealproton = 0;
-		this.angulorealneutron = 90;
-		
+//variables containing the number of protons, neutrons and electrons, as well as radii and angles, for clarity purposes only, the act() function sets the values for most of them from frame 1
+	protones : 1,
+	neutrones : 0,
+	electrones : 1,
+	symbol : "H",
+	name : "Hidrógeno",
+	natomico : 1,
+	masa : 1,
+	peso : 1.008,
+	
+	anguloproton : 0,
+	anguloproton2 : 0,
+	angulorealproton : 0, 
+	radiopequeproton : 15,
+	radiograndeproton : 35,
+	
+	anguloneutron : 0,
+	anguloneutron2 : 0,
+	angulorealneutron : 0, 
+	radiopequeneutron : 22,
+	radiograndeneutron : 42,
+	
+	anguloelectron : 0,
+	anguloelectron2 : 0,
+	anguloelectron3 : 0,
+	angulorealelectron : 0, 
+	radiopequeelectron : 100,
+	radiograndeelectron : 150,
+	radiograndeelectron3 : 200,
+	
+	//function that creates the protons, neutrons and electrons, and sets the right angles
+	crear: function() {		
+		//offsets the initial neutron angle by 90º so that in the Helium and similar atoms they don't "overlap" and fill the nucleus in a more homogeneous way 
+		atomo.angulorealproton = 0;
+		atomo.angulorealneutron = 90;
+	//if the number of electrons set by the act() function is less or equal than 2 the for() loop	pushes a new Electron object in the electro1 array on layer 1 every cycle until the number of elements reaches 2, and makes the electrons spread in a 360º arc uniformly using sin and cos functions with the radius of layer1 being "radiopequeelectron" and the angle being "angulorealelectron" which gets increased every cycle of the for() loop by "anguloelectron" which is set by the act() function depending on the number of total electrons on that layer.
 		if(atomo.electrones <= 2) {
 			for(i = 0; i < atomo.electrones; i++) {			
 				atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron;
@@ -24,6 +57,7 @@ var atomo = {
 				electro1.push(new Electron(x, y, 1));
 						
 			}
+			//if the number of electrons set by the act() function is less or equal than 10, the first for loop does the same thing the one above did, but stops at 2 electrons, and the second for() loop takes the i variable from where the first one left it (2) and counts up to 10 pushing a new Electron object on layer2 every cycle (meaning 8 max electrons on layer2) and changes the "angulorealelectron" adding "anguloelectron2" to it every cycle, starting from where the first for() loop left it (360º which is the same as 0º)."anguloelectron2" is set by the act function depending on the number of elements on layer2. 
 		} else if(atomo.electrones <= 10) {
 			for(i = 0; i < 2; i++) {
 				atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron;
@@ -43,6 +77,7 @@ var atomo = {
 				electro1.push(new Electron(x, y, 2));
 						
 			}
+			//This last else if () statement does exactly the same thing as the one before, only this time, with 3 for() loops, one that counts to 2, another one that stops at 10, and the last one that stops at 18.
 		} else if(atomo.electrones <= 18) {
 			for(i = 0; i < 2; i++) {
 				atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron;
@@ -137,50 +172,24 @@ var atomo = {
 			}
 		}
 	},
-	protones : 1,
-	neutrones : 0,
-	electrones : 1,
-	symbol : "H",
-	name : "Hidrógeno",
-	natomico : 1,
-	masa : 1,
-	peso : 1.008,
-	
-	anguloproton : 0,
-	anguloproton2 : 0,
-	angulorealproton : 0, 
-	radiopequeproton : 15,
-	radiograndeproton : 35,
-	
-	anguloneutron : 0,
-	anguloneutron2 : 0,
-	angulorealneutron : 0, 
-	radiopequeneutron : 22,
-	radiograndeneutron : 42,
-	
-	anguloelectron : 0,
-	anguloelectron2 : 0,
-	anguloelectron3 : 0,
-	angulorealelectron : 0, 
-	angulorealelectron3 : 0, 
-	radiopequeelectron : 100,
-	radiograndeelectron : 150,
-	radiograndeelectron3 : 200,
-	
+		
 	act : function(numeroelem) {
+			
+			if(numeroelem === 1){
+			   atomo.radiopequeproton = 0;
+			   } else {
+				   atomo.radiopequeproton = 15;
+			   }
 			if(numeroelem === 1) {
-				atomo.protones = 1;
 				atomo.neutrones = 0;
-				atomo.electrones = 1;
 				atomo.anguloproton = 360;
 				atomo.anguloelectron = 360;
+				atomo.anguloelectron2 = 360;
 				atomo.natomico = 1;
 				atomo.peso = 1.008;
 				atomo.name = "Hidrógeno";
 				atomo.symbol = "H";
 			} else if(numeroelem === 2) {
-				atomo.protones = 2;
-				atomo.electrones = 2;
 				atomo.neutrones = 2;
 				atomo.anguloproton = 360/2;
 				atomo.anguloneutron = 360/2;
@@ -190,7 +199,6 @@ var atomo = {
 				atomo.name = "Helio";
 				atomo.symbol = "He";
 			}  else if(numeroelem === 3) {
-				atomo.protones = 3;
 				atomo.neutrones = 4;
 				atomo.electrones = 3;
 				atomo.anguloproton = 360/3;
@@ -202,7 +210,6 @@ var atomo = {
 				atomo.name = "Litio";
 				atomo.symbol = "Li";
 			}  else if(numeroelem === 4) {
-				atomo.protones = 4;
 				atomo.neutrones = 5;
 				atomo.electrones = 4;
 				atomo.anguloneutron = 360/5;
@@ -214,7 +221,6 @@ var atomo = {
 				atomo.name = "Berilio";
 				atomo.symbol = "Be";
 			} else if(numeroelem === 5) {
-				atomo.protones = 5;
 				atomo.neutrones = 6;
 				atomo.electrones = 5;
 				atomo.anguloproton = 360/5;
@@ -226,7 +232,6 @@ var atomo = {
 				atomo.name = "Boro";
 				atomo.symbol = "B";
 			}  else if(numeroelem === 6) {
-				atomo.protones = 6;
 				atomo.neutrones = 6;
 				atomo.electrones = 6;
 				atomo.anguloproton = 360/6;
@@ -238,7 +243,6 @@ var atomo = {
 				atomo.name = "Carbono";
 				atomo.symbol = "C";
 			}  else if(numeroelem === 7) {
-				atomo.protones = 7;
 				atomo.neutrones = 7;
 				atomo.electrones = 7;
 				atomo.anguloproton = 360/7;
@@ -250,7 +254,6 @@ var atomo = {
 				atomo.name = "Nitrógeno";
 				atomo.symbol = "N";
 			} else if(numeroelem === 8) {
-				atomo.protones = 8;
 				atomo.neutrones = 8;
 				atomo.electrones = 8;
 				atomo.anguloproton = 360/8;
@@ -262,7 +265,6 @@ var atomo = {
 				atomo.name = "Oxígeno";
 				atomo.symbol = "O";
 			}  else if(numeroelem === 9) {
-				atomo.protones = 9;
 				atomo.neutrones = 10;
 				atomo.electrones = 9;
 				atomo.anguloproton2 = 360/1;
@@ -276,7 +278,6 @@ var atomo = {
 				atomo.name = "Flúor";
 				atomo.symbol = "F";
 			}  else if(numeroelem === 10) {
-				atomo.protones = 10;
 				atomo.neutrones = 10;
 				atomo.electrones = 10;
 				atomo.anguloproton2 = 360/2;
@@ -290,7 +291,6 @@ var atomo = {
 				atomo.name = "Neón";
 				atomo.symbol = "Ne";
 			} else if(numeroelem === 11) {
-				atomo.protones = 11;
 				atomo.neutrones = 12;
 				atomo.electrones = 11;
 				atomo.anguloproton2 = 360/3;
@@ -305,7 +305,6 @@ var atomo = {
 				atomo.name = "Sodio";
 				atomo.symbol = "Na";
 			}  else if(numeroelem === 12) {
-				atomo.protones = 12;
 				atomo.neutrones = 12;
 				atomo.electrones = 12;
 				atomo.anguloproton2 = 360/4;
@@ -320,7 +319,6 @@ var atomo = {
 				atomo.name = "Magnesio";
 				atomo.symbol = "Mg";
 			}  else if(numeroelem === 13) {
-				atomo.protones = 13;
 				atomo.neutrones = 14;
 				atomo.electrones = 13;
 				atomo.anguloproton2 = 360/5;
@@ -335,7 +333,6 @@ var atomo = {
 				atomo.name = "Aluminio";
 				atomo.symbol = "Al";
 			} else if(numeroelem === 14) {
-				atomo.protones = 14;
 				atomo.neutrones = 14;
 				atomo.electrones = 14;
 				atomo.anguloproton2 = 360/6;
@@ -350,7 +347,6 @@ var atomo = {
 				atomo.name = "Silicio";
 				atomo.symbol = "Si";
 			}  else if(numeroelem === 15) {
-				atomo.protones = 15;
 				atomo.neutrones = 16;
 				atomo.electrones = 15;
 				atomo.anguloproton2 = 360/7;
@@ -380,7 +376,6 @@ var atomo = {
 				atomo.name = "Azufre";
 				atomo.symbol = "S";
 			}  else if(numeroelem === 17) {
-				atomo.protones = 17;
 				atomo.neutrones = 18;
 				atomo.electrones = 17;
 				atomo.anguloproton2 = 360/9;
@@ -395,9 +390,7 @@ var atomo = {
 				atomo.name = "Cloro";
 				atomo.symbol = "Cl";
 			}  else if(numeroelem === 18) {
-				atomo.protones = 18;
 				atomo.neutrones = 22;
-				atomo.electrones = 18;
 				atomo.anguloproton2 = 360/10;
 				atomo.anguloproton = 360/8;
 				atomo.anguloneutron = 360/8;
@@ -410,11 +403,13 @@ var atomo = {
 				atomo.name = "Argón";
 				atomo.symbol = "Ar";
 			}
+				atomo.protones = atomo.electrones = numeroelem;
+				//atomo.electrones = numel;
 				proto1 = [];
 				neutro1 = [];
 				electro1 = [];
 				atomo.masa = atomo.protones + atomo.neutrones;
-				atomo.dibujar();
+				atomo.crear();
 		}
 	};
 	
@@ -632,7 +627,7 @@ function setup() {
 	muestras.push(new Electron(10, 470, 0));
 	muestras.push(new Proton(10, 420));
 	angleMode(DEGREES);
-	atomo.act();	
+	atomo.act(1);	
 }
 function draw() {
 	background(169);	
