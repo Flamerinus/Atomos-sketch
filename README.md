@@ -1,6 +1,5 @@
 # Atomos-sketch
-
-<p>[See it in action here](http://flamerinus.byethost7.com/atomos/)</p>
+[See it in action here](http://flamerinus.byethost7.com/atomos/)
 
 This is a simple program that displays a small part of the periodic table, with a visual representation of the atom displayed in the basic Bohr model.
 It's aim is to aid with basic visual understanding of the atom and subatomic particles, and their simplified representation.
