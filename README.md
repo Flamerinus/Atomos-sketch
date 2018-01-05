@@ -7,3 +7,4 @@
 <p>The program shows how many particles of each type are in the nucleus and how many are orbiting the nucleus in the outer shells, as well as the number of shells, for different kinds of atoms.</p>
 <p>The protons and neutrons inside the nucleus are not really organized in shells, this is done for convenience and visual clarity.
 The electrons do get organized in discrete shells around the nucleus in real atoms.</p>
+<p>The code is fairly extensively commented and it's nothing special, efficient, elegant or hard to understand</p>

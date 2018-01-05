@@ -410,7 +410,7 @@ var atomo = {
 				//This part of the code sets the number of protons and electrons to be the same as the element number, each time this function is triggered
 				atomo.protones = atomo.electrones = numeroelem;
 				
-				//This part of the code declares 3 arrays containing the protons, neutrons and electrons, which obviously get created in frame 1 because this function gets triggered by the setup function before anything else is created or drawn.
+				//This part of the code empties the 3 arrays containing the protons, neutrons and electrons, which obviously get created in frame 1 because this function gets triggered by the setup function before anything else is created or drawn.
 				proto1 = [];
 				neutro1 = [];
 				electro1 = [];
