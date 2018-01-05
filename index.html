@@ -6,46 +6,46 @@
   <!-- uncomment lines below to include extra p5 libraries -->
   <script language="javascript" src="libraries/p5.dom.js"></script>
   <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
-  <!-- This includes the javascipt file containing the functiones used in this HTML file, which has to be located in the same folder as this file.  -->	
+  <!-- This includes the javascipt file containing the functiones used in this HTML file, which has to be located in the same folder as this file.  -->
   <script language="javascript" type="text/javascript" src="atomos-sketch.js"></script>
-  
+
   <style>
-	  body {padding: 0; margin: 0;} 
-	  #tablabotones {width: 800px;}			
-	  
-	  #botones1,#botones3,#botones5 {  
+	  body {padding: 0; margin: 0;}
+	  #tablabotones {width: 800px;}
+
+	  #botones1,#botones3,#botones5 {
 		  			text-align: left;
 		  			}
 	  #botones2,#botones4,#botones6 {  
 		  			text-align: right;
-		  			}	
-	   
+		  			}
+
 	  button { width:75;}
 	    #centro {   display:flex;
 		  			justify-content:center;
-	  			    background-color:red;  }
-	  
+	  			    background-color:darkgrey;  }
+
 	  	#maindiv {   display:flex;
 		  			justify-content:center;
-	  			    background-color:green;  }
+	  			    background-color:darkgrey;  }
   </style>
 </head>
 
   <body>
-	
+
 	<div id="centro">
 	</div>
-	
+
 	<div id="maindiv">
 	<table id="tablabotones">
 	<tr>
 		<td id="botones1">
 		<button type="button" id="hidrogeno" onclick="atomo.act(1)">Hidrógeno</button>
 		</td>
-		<td id="botones2">	
+		<td id="botones2">
 		<button type="button" id="helio" onclick="atomo.act(2)">Helio</button>
-		</td>	
-	</tr>	
+		</td>
+	</tr>
 	<tr>
 		<td id="botones3">
 		<button type="button" id="litio" onclick="atomo.act(3)">Litio</button>
@@ -58,7 +58,7 @@
 		<button type="button" id="oxigeno" onclick="atomo.act(8)">Oxígeno</button>
 		<button type="button" id="fluor" onclick="atomo.act(9)">Flúor</button>
 		<button type="button" id="neon" onclick="atomo.act(10)">Neón</button>
-		</td>	
+		</td>
 	</tr>
 	<tr>
 		<td id="botones5">

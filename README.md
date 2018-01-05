@@ -1,6 +1,5 @@
 <h1>Atomos-sketch</h1>
-<p><a href="http://flamerinus.byethost7.com/atomos/" target="_blank">Click here to see it in action.</a></p>
-
+[Click here to see it in action](http://flamerinus.byethost7.com/atomos/).("CTRL + click" to open a new tab) 
 <p>This is a simple program that displays a small part of the periodic table, with a visual representation of the atom displayed in the basic __Bohr model__.</p>
 <p>It's aim is to aid with basic visual understanding of the atom and subatomic particles, and their simplified representation.</p>
 <p>The scale of the atom is __not__ accurate and neither is the shape or behavior of the subatomic particles.</p>
