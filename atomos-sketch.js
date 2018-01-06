@@ -1,17 +1,17 @@
 //variables that will determine the width and height of the canvas object used by the p5.js library to draw. It is rendered in the setup() function, at the end of the document.
 var canvwidth = 800;
 var canvheight = 480;
-//arrays that contain the proton, neutron and electron objects
+//arrays that contain the proton, neutron and electron objects.
 var proto1 = [];
 var neutro1 = [];
 var electro1 = [];
 var muestras = [];
-//big container for every variable of the virtual atom drawn on the canvas
+//big container for every variable of the virtual atom drawn on the canvas.
 var atomo = {
-//set the x and y coordinates of the atom to be half the value of the canvas width and height so it's drawn in the exact center
+//set the x and y coordinates of the atom to be half the value of the canvas width and height so it's drawn in the exact center.
 	x : canvwidth / 2,
 	y : canvheight / 2,
-//variables containing the number of protons, neutrons and electrons, as well as radii and angles, for clarity purposes only, the act() function sets the values for most of them from frame 1
+//variables containing the number of protons, neutrons and electrons, as well as radii and angles, for clarity purposes only, the act() function sets the values for most of them from frame 1.
 	protones : 1,
 	neutrones : 0,
 	electrones : 1,
@@ -43,10 +43,10 @@ var atomo = {
 
 	//function that creates the protons, neutrons and electrons, and sets the right angles.
 	crear: function() {
-		//offsets the initial neutron angle by 90º so that in the Helium and similar atoms they don't "overlap" and fill the nucleus in a more homogeneous way
+		//offsets the initial neutron angle by 90º so that in the Helium and similar atoms they don't "overlap" and fill the nucleus in a more homogeneous way.
 		atomo.angulorealproton = 0;
 		atomo.angulorealneutron = 90;
-	//if the number of electrons set by the act() function is less or equal than 2 the for() loop  makes the electrons spread in a 360º arc uniformly using sin and cos functions starting at the atom's x and y, with the radius of the 1st shell being "radiopequeelectron" and the angle being "angulorealelectron" which gets increased every cycle of the for() loop by "anguloelectron" which is set by the act() function depending on the number of total electrons in that shell, then pushes a new Electron object in the electro1 array on the 1st shell every cycle until the number of elements reaches 2.
+	//if the number of electrons set by the act() function is less or equal than 2, the for() loop  makes the electrons spread in a 360º arc uniformly using sin and cos functions starting at the atom's x and y, with the radius of the 1st shell being "radiopequeelectron" and the angle being "angulorealelectron" which gets increased every cycle of the for() loop by "anguloelectron" which is set by the act() function depending on the number of total electrons in that shell.After that it pushes a new Electron object in the electro1 array on the 1st shell every cycle until the number of elements reaches the "atomo.electrones" value set by the act() function.
 		if(atomo.electrones <= 2) {
 			for(i = 0; i < atomo.electrones; i++) {
 				atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron;
@@ -54,12 +54,11 @@ var atomo = {
 				y = atomo.y;
 				x = x + sin(atomo.angulorealelectron) * atomo.radiopequeelectron;
 				y = y + cos(atomo.angulorealelectron) * atomo.radiopequeelectron;
-				//this array is declared in the act() function right before this function is called. It takes, x and y coordinates as well as the number of the shell the electron is to be created on.
+				//this array and the ones containing the new Protons and Neutrons are declared every time in the act() function right before this function is called. It takes, x and y coordinates as well as the number of the shell the electron is to be created on.
 				electro1.push(new Electron(x, y, 1));
-
 			}
-			//if the number of electrons set by the act() function is less or equal than 10, the first for loop does the same thing the one above did, but stops at 2 electrons, and the second for() loop takes the i variable from where the first one left it (2) and counts up to 10 pushing a new Electron object on the 2nd shell every cycle (meaning 8 max electrons on layer2) and changes the "angulorealelectron" adding "anguloelectron2" to it every cycle, starting from where the first for() loop left it (360º which is the same as 0º)."anguloelectron2" is set by the act function depending on the number of elements on the 2nd shell.
-		} else if(atomo.electrones <= 10) {
+			//if the number of electrons set by the act() function is less or equal than 10 and greater than 2, the first for loop does the same thing the one above did, but stops at 2 electrons, and the second for() loop takes the i variable from where the first one left it (2) and counts up to 10 pushing a new Electron object on the 2nd shell every cycle (meaning 8 max electrons in the 2nd shell) and changes the "angulorealelectron" adding "anguloelectron2" to it every cycle, starting from where the first for() loop left it (360º which is the same as 0º)."anguloelectron2" is set by the act function depending on the number of electrons on the 2nd shell. It is manually coded into each element "if/elese if" statement inside that function.
+		} else if(atomo.electrones <= 10 && atomo.electrones > 2) {
 			for(i = 0; i < 2; i++) {
 				atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron;
 				x = atomo.x;
@@ -67,7 +66,6 @@ var atomo = {
 				x = x + sin(atomo.angulorealelectron) * atomo.radiopequeelectron;
 				y = y + cos(atomo.angulorealelectron) * atomo.radiopequeelectron;
 				electro1.push(new Electron(x, y, 1));
-
 			}
 			for(i; i < atomo.electrones; i++) {
 				atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron2;
@@ -76,10 +74,9 @@ var atomo = {
 				x = x + sin(atomo.angulorealelectron) * atomo.radiograndeelectron;
 				y = y + cos(atomo.angulorealelectron) * atomo.radiograndeelectron;
 				electro1.push(new Electron(x, y, 2));
-
 			}
-			//This last else if () statement does exactly the same thing as the one before, only this time, with 3 for() loops, one that counts to 2, another one that stops at 10, and the last one that stops at 18.This is done because the 1st shell can only have 2 electrons, the 2nd shell maxes out at 8 and the 3rd shell reaches 8 with our last element: Argon(2+10+8).If the number of elements were to be increased some day, this 3rd shell could hold up to 18 electrons.
-		} else if(atomo.electrones <= 18) {
+			//This last else if () statement does exactly the same thing as the one before, only this time, with 3 for() loops, one that counts to 2, another one that stops at 10, and the last one that deals with the rest, which in this case means a max of 8.This is done because the 1st shell can only have 2 electrons, the 2nd shell maxes out at 8 and the 3rd shell reaches 8 with our last element: Argon(2+8+8).If the number of elements were to be increased some day, this 3rd shell could hold up to 18 electrons.
+		} else if(atomo.electrones >10) {
 			for(i = 0; i < 2; i++) {
 				atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron;
 				x = atomo.x;
@@ -87,7 +84,6 @@ var atomo = {
 				x = x + sin(atomo.angulorealelectron) * atomo.radiopequeelectron;
 				y = y + cos(atomo.angulorealelectron) * atomo.radiopequeelectron;
 				electro1.push(new Electron(x, y, 1));
-
 			}
 			for(i; i < 10; i++) {
 				atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron2;
@@ -96,7 +92,6 @@ var atomo = {
 				x = x + sin(atomo.angulorealelectron) * atomo.radiograndeelectron;
 				y = y + cos(atomo.angulorealelectron) * atomo.radiograndeelectron;
 				electro1.push(new Electron(x, y, 2));
-
 			}
 			for(i; i < atomo.electrones; i++) {
 				atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron3;
@@ -105,11 +100,9 @@ var atomo = {
 				x = x + sin(atomo.angulorealelectron) * atomo.radiograndeelectron3;
 				y = y + cos(atomo.angulorealelectron) * atomo.radiograndeelectron3;
 				electro1.push(new Electron(x, y, 3));
-
-
 			}
 		}
-		//The same thing is done with the protons, but instead of 3 shells, they are divided in two imaginary shells inside the nucleus. The 1st smaller one takes up to 8 protons and the rest go in a second bigger shell, around the small one.
+		//The same thing is done with the protons, but instead of 3 shells, they are divided in two imaginary shells inside the nucleus. The 1st smaller one takes up to 8 protons and the rest go in a second bigger shell with radius "radiograndeproton", around the small one with radius "radiopequeproton".
 		if(atomo.protones <= 8) {
 			for(i = 0; i < atomo.protones; i++) {
 				atomo.angulorealproton = atomo.angulorealproton + atomo.anguloproton;
@@ -120,7 +113,7 @@ var atomo = {
 				proto1.push(new Proton(x, y));
 
 			}
-			} else {
+		} else if(atomo.protones > 8) {
 
 			for(i = 0; i < 8; i++) {
 				atomo.angulorealproton = atomo.angulorealproton + atomo.anguloproton;
@@ -141,7 +134,7 @@ var atomo = {
 				proto1.push(new Proton(x, y));
 			}
 		}
-		//Same formula applied to neutrons, 2 imaginary shells inside the nucleus, for visual clarity.
+		//Same formula applied to neutrons, 2 imaginary shells inside the nucleus, for visual clarity.This last "else if" statement could be an "else" with no conditions and the code would do the same, but in view of future modifications, we use the "else if" to make it easier to add another shell or make the loop stop at a certain number of particles adding "&& atomo.neutrones < x" next to the "> 8".This is the case for the other 2 creator functions as well.
 		if(atomo.neutrones <= 8) {
 			for(i = 0; i < atomo.neutrones; i++) {
 				atomo.angulorealneutron = atomo.angulorealneutron + atomo.anguloneutron;
@@ -152,7 +145,7 @@ var atomo = {
 				neutro1.push(new Neutron(x, y));
 
 			}
-			} else {
+		} else if(atomo.neutrones > 8){
 			for(i = 0; i < 8; i++) {
 				atomo.angulorealneutron = atomo.angulorealneutron + atomo.anguloneutron;
 				x = atomo.x;
@@ -173,7 +166,7 @@ var atomo = {
 			}
 		}
 	},
-	//Function that is triggered in the 1st frame(in the setup() main function of the p5.js library, down below) and every time one of the buttons is pressed. It takes the argument "numeroelem" from each of the buttons, and uses it to determine the atom to display, from Hydrogen to Argon.
+	//Function that is triggered in the 1st frame(in the setup() main function of the p5.js library, down below) and every time one of the element buttons is pressed. It takes the argument "numeroelem" from each of the buttons, and uses it to determine the atom to display, from Hydrogen to Argon, as well as all the other variables related to each element.
 	act : function(numeroelem) {
 			//this if() statement makes sure that if the selected element is Hydrogen, the one proton in the nucleus gets displayed in the center, and when there are 2 or more protons present, they get displayed at a distance from the center, in an imaginary shell with this radius: "radiopequeproton".
 			if(numeroelem === 1){
@@ -181,7 +174,7 @@ var atomo = {
 			   } else {
 				   atomo.radiopequeproton = 15;
 			   }
-		//this is the main part of the function, where it checks to see what button has been pressed and changes the variables to display the correct number of protons, neutrons and electrons, as well as the correct atomic weight, name, symbol and angles for the uniform spread of the protons and electrons in the crear() function, depending of the amount and the shell they are in.
+		//this is the main part of the function, where it checks to see what button has been pressed and changes the variables to display the correct number of protons, neutrons and electrons, as well as the correct atomic weight, name, symbol and angles for the uniform spread of the protons and electrons in the crear() function, depending on the amount and the shell they are in.
 			if(numeroelem === 1) {
 				atomo.neutrones = 0;
 				atomo.anguloproton = 360;
@@ -407,21 +400,21 @@ var atomo = {
 			}
 		//Some of the above could have been done with less code, but given that each atom has it's own name, symbol and atomic weight, I couldn't think of (or tried too hard) a different and more efficient way of doing it.
 
-				//This part of the code sets the number of protons and electrons to be the same as the element number, each time this function is triggered
+				//This part of the code sets the number of protons and electrons to be the same as the element number, each time this function is triggered.
 				atomo.protones = atomo.electrones = numeroelem;
 
-				//This part of the code empties the 3 arrays containing the protons, neutrons and electrons, which obviously get created in frame 1 because this function gets triggered by the setup function before anything else is created or drawn.
+				//This part of the code empties the 3 arrays containing the protons, neutrons and electrons, which obviously get created in frame 1 because this function gets triggered by the setup function before anything else is created or drawn.It redeclares them as arrays with no values so that the previous particles that were created inside are eliminated and the new ones created by the crear() function below, don't stack on top of the old ones.
 				proto1 = [];
 				neutro1 = [];
 				electro1 = [];
-				//Now to calculate the atomic mass of each element we add the number of protons and the number of electrons, as this is displayed in the box, alongside the name, symbol, atomic weight, atomic number and electron configuration of each atom
+				//Now to calculate the atomic mass of each element we add the number of protons and the number of electrons, as this is displayed in the box by the elembox() function, alongside the name, symbol, atomic weight, atomic number and electron configuration of each atom
 				atomo.masa = atomo.protones + atomo.neutrones;
 				//after setting every variable we trigger the crear() function which  creates the proton, neutron and electron objects at the different positions and angles, inside the nucleus, and in the electron shells and pushes them in their corresponding arrays. The objects are described below, and they have their own draw function as right now they are only objects inside an array, and have x and y coordinates, but no visual representation.
 				atomo.crear();
 		}
 	};
 
-//This is the creator function for the object "Electron", and it contains all the variables related to this object, and every instance of it that will be created by the crear() function. The same creator functions are used to generate the Neutron and Proton objects. It takes 3 arguments, x, y and c, this last one being the shell the electron has to be created on(1,2 or 3).
+//This is the creator function for the object "Electron", and it contains all the variables related to this object, and every instance of it that will be created by the crear() function. The same creator functions are used to generate the Neutron and Proton objects. It takes 3 arguments, x, y and c, this last one being the shell the electron has to be created in (1,2 or 3).
 function Electron(x, y, c) {
 	//This takes the input arguments the crear() function gives this instance of the Electron when it creates it, and stores them as local variables for this object, because they will be used to move this particular instance of the object around the nucleus in it's corresponding shell. The input arguments are only used to determine where it is created and drawn for the first frame, after that it has to be animated.
 	this.x = x;
@@ -429,7 +422,7 @@ function Electron(x, y, c) {
 	//the x and y input arguments get stored for a second time for the bouncing part of the mover() function, which is used in the one electron displayed as an example in the lower left corner, alongside the number of electrons, protons and neutrons.
 	this.fixx = x;
 	this.fixy = y;
-	//this is the speed of the bouncing explained below, in the mover() function
+	//this is the amount every particle moves inside of the bouncing explained below, in the mover() function
 	this.speedx = random(1, 3)/10;
 	this.speedy = random(1, 3)/10;
 	this.capa = c;
@@ -450,7 +443,7 @@ function Electron(x, y, c) {
 			this.y = atomo.y;
 			//Here I set the radius of the electron's motion to "radiopequeelectron" given that it's in the 1st shell.
 			this.radio = atomo.radiopequeelectron;
-			//This line subtratcts 1 from the angle we got before, the moment this instance of the electron was created, so that it can be used to render it at a decresing angle every frame using the same principle and sin/cos functions we used in the crear() function to determine the position at which it's created. The only difference is that inside this mover() function, we are modifying the angle so that the electron is created at a different point every frame and thus making it spin around the nucleus at a certain distance: "radio", given that this mover() function is also called inside the draw() main function of p5.js, which is triggered every frame, through the drawparticles() function.
+			//This line subtratcts 1 from the angle we got before, the moment this instance of the electron was created, so that it can be used to render it at a decresing angle every frame using the same principle and sin/cos functions we used in the crear() function to determine the position at which it's created. The only difference is that inside this mover() function, we are modifying the angle so that the electron is created at a different point every frame and thus making it spin around the nucleus at a certain distance: "radio", given that this mover() function is also called inside the draw() main function of p5.js, (which is triggered every frame) through the drawparticles() function.
 			this.angulorot--;
 			this.x = this.x + sin(this.angulorot) * this.radio;
 			this.y = this.y + cos(this.angulorot) * this.radio;
@@ -470,7 +463,8 @@ function Electron(x, y, c) {
 			this.angulorot = this.angulorot - 2;
 			this.x = this.x + sin(this.angulorot) * this.radio;
 			this.y = this.y + cos(this.angulorot) * this.radio;
-			//This non-existent shell 0 is used solely for the purpose of having the one electron in the lower left corner bouncing around. As you can see it uses no sin/cos functions because it is not spinning, but bouncing inside a tiny bouncing box. The way the if() statement works is: it checks to see if the x coordinate of this instance of the electron: "this.x" is greater than another instance of the x we stored a second time a few lines of code ago, which we will use as an origin: "this.fixx" + 1 or if "this.x" is smaller than the same "this.fixx" - 1.If either is true, than it multiplies the speedx variable of this instance of the electron "this.speedx" by -1, which has the effect of making it negative if it's positive and making it positive if it's negative. Then after it does the same with the y coordinate it just adds the speedx to the x and the speedy to the y basically moving the electron's x and y coordinates inside a bouncing box which is 4x4, and whenever it's this.x is greater than the original x "this.fixx" +1 which means this.fixx +2, it makes it move in the opposite direction, until it gets to be smaller than this.fixx -1 which means this.fixx -2 and then it makes it go the other way again. The same happens with the y coordinate. The speedx and speedy can be changed, of course, and so can the +1 and -1 for the this.fixx and this.fixy, in order to make the bouncing box bigger or smaller. This is the exact procedure used to make the protons and neutrons bounce.
+			//This non-existent shell 0 is used solely for the purpose of having the one electron in the lower left corner bouncing around. As you can see it uses no sin/cos functions because it is not spinning, but bouncing inside a tiny bouncing box. The way the if() statement works is: it checks to see if the x coordinate of this instance of the electron: "this.x" is greater than another instance of the x we stored a second time a few lines of code ago, which we will use as an origin: "this.fixx" + 1 or if "this.x" is smaller than the same "this.fixx" - 1.
+			//If either is true, than it multiplies the speedx variable of this instance of the electron "this.speedx" by -1, which has the effect of making it negative if it's positive and making it positive if it's negative. Then after it does the same with the y coordinate it just adds the "speedx" to the x and the "speedy" to the y basically moving the electron's x and y coordinates inside a bouncing box, and whenever it's this.x is greater than the original x "this.fixx" +1 which means this.fixx +2, it makes it move in the opposite direction, until it gets to be smaller than this.fixx -1 which means this.fixx -2 and then it makes it go the other way again. The same happens with the y coordinate. The speedx and speedy can be changed, of course, and so can the +1 and -1 for the this.fixx and this.fixy, in order to make the bouncing box bigger or smaller. This is the exact procedure used to make the protons and neutrons bounce.
 		} else if(this.capa === 0) {
 			if (this.x > this.fixx + 1 || this.x < this.fixx - 1 ) {
 			this.speedx = this.speedx * -1;
@@ -486,7 +480,7 @@ function Electron(x, y, c) {
 	}
 
 	}
-//creator function for the Proton object instances. Everything is the same as it was with the Electron creator function. The main difference is the color, and that these objects don't spin, they only bounce after being created, a simple function explained in the electron object
+//creator function for the Proton object instances. Everything is the same as it was with the Electron creator function. The main difference is the color, and that these objects don't spin, they only bounce, after being created, a simple function explained in the electron object
 function Proton(x, y) {
 
 	this.x = x;
@@ -605,7 +599,7 @@ function elembox() {
 		text(atomo.electrones - 10, 73, 46);
 		noFill();
 		stroke(0, 0, 0, 30);
-		//this part draws the grey guide lines for the shells, and in this case as the atom has more then 10 electrons, it has to draw the 3 of them at their corresponding radii, which of course can be changed by modifying the corresponding radius variable.
+		//This part draws the grey guide lines for the shells, and in this case as the atom has more then 10 electrons, it has to draw the 3 of them at their corresponding radii, which of course can be changed by modifying the corresponding radius variables, which as you can see are multiplied by 2, given that the "ellipse()" function of p5.js takes the "minor/major axis" of the ellipse as the 3rd and 4th parameters. In our case they have the same value as we are trying to draw a circle, and both become the diameter of that circle. The sin/cos functions use radii not diameters, thus the multiplication.
 		ellipse(atomo.x, atomo.y, atomo.radiograndeelectron * 2, atomo.radiograndeelectron * 2); //2nd shell
 		ellipse(atomo.x, atomo.y, atomo.radiopequeelectron * 2, atomo.radiopequeelectron * 2); //1st shell
 		ellipse(atomo.x, atomo.y, atomo.radiograndeelectron3 * 2, atomo.radiograndeelectron3 * 2); //3rd shell
@@ -621,7 +615,7 @@ function elembox() {
 		//Here only the 2 inner shells are drawn given that the atom has between 3 and 10 electrons.
 		ellipse(atomo.x, atomo.y, atomo.radiograndeelectron * 2, atomo.radiograndeelectron * 2); //2nd shell
 		ellipse(atomo.x, atomo.y, atomo.radiopequeelectron * 2, atomo.radiopequeelectron * 2); //1st shell
-		 //this part is for when the number of electrons is neither greater than 10 nor between 2 and 10, meaning 1 and 2 electrons. In this case it just displays them.
+		 //this part is for when the number of electrons is neither greater than 10 nor between 2 and 10, meaning 1 and 2 electrons. In this case it just displays that number.
 	   } else {
 		textAlign(RIGHT);
 		textSize(12);
@@ -653,10 +647,11 @@ function setup() {
 }
 //This is the second main function of p5.js.It gets rendered every frame. Inside you have to place everything you need to be drawn on the canvas every frame, not only once. Any animation, or text that can change goes in here, or is called by a function that goes in here.
 function draw() {
-	//This first line draws the background every frame, basically erasing everything else and after that everything gets redrawn again, every frame. The order in which you place things inside this function is very important, you don't want to have the background be drawn last, covering everything else :D
+	//This first line draws the background every frame, basically erasing everything else and after that everything gets redrawn again. The order in which you place things inside this function is very important, you don't want to have the background be drawn last, covering everything else :D
 	background(169);
-
+//This draws the description box
 	elembox();
+	//This calls the dibujar() and mover() functions of each particle in their corresponding arrays, and draws the nucleus.
 	drawparticles();
 	//This draws the text in the lower left corner.
 	noStroke();
