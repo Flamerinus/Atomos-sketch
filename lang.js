@@ -52,7 +52,6 @@ function goeng(){
     }
 
   }
-  //alert("total " + z.length + " keys: " +z + y);
 }
 
 function goesp(){
