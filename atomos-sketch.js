@@ -12,34 +12,34 @@ var atomo = {
 	x : canvwidth / 2,
 	y : canvheight / 2,
 //variables containing the number of protons, neutrons and electrons, as well as radii and angles, for clarity purposes only, the act() function sets the values for most of them from frame 1.
-	protones : 1,
-	neutrones : 0,
-	electrones : 1,
+	protones: 1,
+	neutrones: 0,
+	electrones: 1,
 	symbol : "H",
-	name : "Hidrógeno",
-	natomico : 1,
-	masa : 1,
-	peso : 1.008,
+	name:"",
+	natomico: 1,
+	masa: 1,
+	peso: 1.008,
 
-	anguloproton : 0,
-	anguloproton2 : 0,
-	angulorealproton : 0,
-	radiopequeproton : 15,
-	radiograndeproton : 35,
+	anguloproton: 0,
+	anguloproton2: 0,
+	angulorealproton: 0,
+	radiopequeproton: 15,
+	radiograndeproton: 35,
 
-	anguloneutron : 0,
-	anguloneutron2 : 0,
-	angulorealneutron : 0,
-	radiopequeneutron : 22,
-	radiograndeneutron : 42,
+	anguloneutron: 0,
+	anguloneutron2: 0,
+	angulorealneutron: 0,
+	radiopequeneutron: 22,
+	radiograndeneutron: 42,
 
-	anguloelectron : 0,
-	anguloelectron2 : 0,
-	anguloelectron3 : 0,
-	angulorealelectron : 0,
-	radiopequeelectron : 100,
-	radiograndeelectron : 150,
-	radiograndeelectron3 : 200,
+	anguloelectron: 0,
+	anguloelectron2: 0,
+	anguloelectron3: 0,
+	angulorealelectron: 0,
+	radiopequeelectron: 100,
+	radiograndeelectron: 150,
+	radiograndeelectron3: 200,
 
 	//function that creates the protons, neutrons and electrons, and sets the right angles.
 	crear: function() {
@@ -563,11 +563,13 @@ function drawparticles (){
 //This draws the little box where the characteristics of the atom being displayed are shown. It uses p5.js functions to draw on the p5 canvas. The fill and stroke functions are kind of self-explanatory, you use them before you draw text or shapes, so that the fill and stroke colors get used on them. If you do not reset them or change them, they will stay the same for everything you draw afterwards. There is documentation about all of the functions in the p5.js library.
 
 function elembox() {
-	fill(0);
-	rect(9, 9, 67, 93);
-	fill(123, 231, 132, 222);
-	stroke(111);
-	rect(10, 10, 64, 90);
+	//fill(0);
+	//rect(9, 9, 67, 93);
+
+	fill(92,184,92);
+  strokeWeight(3);
+	stroke(55);
+	rect(10, 10, 64, 92);
 
 	noStroke();
 	fill(0);
@@ -599,7 +601,7 @@ function elembox() {
 		text(atomo.electrones - 10, 73, 46);
 		noFill();
 		stroke(0, 0, 0, 30);
-		//This part draws the grey guide lines for the shells, and in this case as the atom has more then 10 electrons, it has to draw the 3 of them at their corresponding radii, which of course can be changed by modifying the corresponding radius variables, which as you can see are multiplied by 2, given that the "ellipse()" function of p5.js takes the "minor/major axis" of the ellipse as the 3rd and 4th parameters. In our case they have the same value as we are trying to draw a circle, and both become the diameter of that circle. The sin/cos functions use radii not diameters, thus the multiplication.
+		//This part draws the grey guide lines for the shells, and in this case as the atom has more then 10 electrons, it has to draw the 3 of them at their corresponding radii, which of course can be changed by modifying the corresponding radius variables, which as you can see are multiplied by 2, given that the "ellipse()" function of p5.js takes the "minor/major axis" of the ellipse as the 3rd and 4th parameters, by default, and I didn't bother to change it. In our case they have the same value as we are trying to draw a circle, and both become the diameter of that circle. The sin/cos functions use radii not diameters, thus the multiplication.
 		ellipse(atomo.x, atomo.y, atomo.radiograndeelectron * 2, atomo.radiograndeelectron * 2); //2nd shell
 		ellipse(atomo.x, atomo.y, atomo.radiopequeelectron * 2, atomo.radiopequeelectron * 2); //1st shell
 		ellipse(atomo.x, atomo.y, atomo.radiograndeelectron3 * 2, atomo.radiograndeelectron3 * 2); //3rd shell
@@ -644,6 +646,7 @@ function setup() {
 	angleMode(DEGREES);
 	//This just triggers the act() function in the same way pressing the Hydrogen button would. This is done so that the canvas displays something before any button gets clicked, and it doesn't appear empty.
 	atomo.act(1);
+
 }
 //This is the second main function of p5.js.It gets rendered every frame. Inside you have to place everything you need to be drawn on the canvas every frame, not only once. Any animation, or text that can change goes in here, or is called by a function that goes in here.
 function draw() {

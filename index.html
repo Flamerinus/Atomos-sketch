@@ -15,6 +15,20 @@
 	  #tablabotones,#toptable {width: 800px;
     background-color: darkgrey;}
 
+     #lowercontent {
+       width: 800px;
+    margin: auto;
+    padding: 10px;
+    }
+    h1 {
+    text-transform: uppercase;
+    color: #5cb85c;
+    text-shadow: 3px 2px #f1f1f1;
+    }
+    p {
+    text-align: justify;
+    letter-spacing: 0px;
+    }
 	  #botones1,#botones3,#botones5 {
 		  			text-align: left;
 		  			}
@@ -55,41 +69,54 @@
 	<table id="tablabotones">
 	<tr>
 		<td id="botones1">
-		<button type="button" class="element"id="e1" onclick="atomo.act(1)">Hidrógeno</button>
+		<button type="button" class="element"id="e1" onclick="atomo.act(1)"></button>
 		</td>
 		<td id="botones2">
-		<button type="button" class="element"id="e2" onclick="atomo.act(2)">Helio</button>
+		<button type="button" class="element"id="e2" onclick="atomo.act(2)"></button>
 		</td>
 	</tr>
 	<tr>
 		<td id="botones3">
-		<button type="button" class="element"id="e3" onclick="atomo.act(3)">Litio</button>
-		<button type="button" class="element"id="e4" onclick="atomo.act(4)">Berilio</button>
+		<button type="button" class="element"id="e3" onclick="atomo.act(3)"></button>
+		<button type="button" class="element"id="e4" onclick="atomo.act(4)"></button>
 		</td>
 		<td id="botones4">
-		<button type="button" class="element"id="e5" onclick="atomo.act(5)">Boro</button>
-		<button type="button" class="element"id="e6" onclick="atomo.act(6)">Carbono</button>
-		<button type="button" class="element"id="e7" onclick="atomo.act(7)">Nitrógeno</button>
-		<button type="button" class="element"id="e8" onclick="atomo.act(8)">Oxígeno</button>
-		<button type="button" class="element"id="e9" onclick="atomo.act(9)">Flúor</button>
-		<button type="button" class="element"id="e10" onclick="atomo.act(10)">Neón</button>
+		<button type="button" class="element"id="e5" onclick="atomo.act(5)"></button>
+		<button type="button" class="element"id="e6" onclick="atomo.act(6)"></button>
+		<button type="button" class="element"id="e7" onclick="atomo.act(7)"></button>
+		<button type="button" class="element"id="e8" onclick="atomo.act(8)"></button>
+		<button type="button" class="element"id="e9" onclick="atomo.act(9)"></button>
+		<button type="button" class="element"id="e10" onclick="atomo.act(10)"></button>
 		</td>
 	</tr>
 	<tr>
 		<td id="botones5">
-		    <button type="button" class="element"id="e11" onclick="atomo.act(11)">Sodio</button>
-		    <button type="button" class="element"id="e12" onclick="atomo.act(12)">Magnesio</button>
+		    <button type="button" class="element"id="e11" onclick="atomo.act(11)"></button>
+		    <button type="button" class="element"id="e12" onclick="atomo.act(12)"></button>
 		</td>
 		<td id="botones6">
-		<button type="button" class="element"id="e13" onclick="atomo.act(13)">Aluminio</button>
-		<button type="button" class="element"id="e14" onclick="atomo.act(14)">Silicio</button>
-		<button type="button" class="element"id="e15" onclick="atomo.act(15)">Fósforo</button>
-		<button type="button" class="element"id="e16" onclick="atomo.act(16)">Azufre</button>
-		<button type="button" class="element"id="e17" onclick="atomo.act(17)">Cloro</button>
-		<button type="button" class="element"id="e18" onclick="atomo.act(18)">Argón</button>
+		<button type="button" class="element"id="e13" onclick="atomo.act(13)"></button>
+		<button type="button" class="element"id="e14" onclick="atomo.act(14)"></button>
+		<button type="button" class="element"id="e15" onclick="atomo.act(15)"></button>
+		<button type="button" class="element"id="e16" onclick="atomo.act(16)"></button>
+		<button type="button" class="element"id="e17" onclick="atomo.act(17)"></button>
+		<button type="button" class="element"id="e18" onclick="atomo.act(18)"></button>
 		</td>
 	</tr>
 	</table>
 	</div>
-	</body>
+  <div id="lowercontent">
+    <h1>Átomos</h1>
+    <p>The aim of this script is to aid with basic visual understanding of the atom and subatomic particles, and their simplified representation.
+  <ul>
+    <li>The general size of the atom is <strong>not</strong> to scale and neither the shape or the behavior of the subatomic particles is realistic.</li>
+    <li>Protons and neutrons inside the nucleus are not really organized in shells.</li>
+    <li>Electrons do get organized in discrete shells around the nucleus in real atoms.</li>
+    <li>The size and mass of the protons and neutrons is much greater than that of the electrons, even though they appear to be the same size in this model.</li>
+    <li>None of them are really shaped like "balls" or behave in this way, overlapping, dancing around, or spinning in different directions.</li>
+  </ul>
+    All this is done for convenience and visual clarity, as this is not intended as an accurate model of real atoms.</p>
+  </div>
+<script language="javascript" type="text/javascript">goeng();</script>
+</body>
 </html>
