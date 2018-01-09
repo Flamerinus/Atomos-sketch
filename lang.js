@@ -20,6 +20,12 @@ var esp = {
   n1:"Protones",
   n2:"Neutrones",
   n3:"Electrones",
+  n5:"Número atómico",
+  n6:"Peso atómico",
+  n7:"Masa atómica",
+  n8:"Primera capa",
+  n9:"Segunda capa",
+  n10:"Tercera capa",
 };
 var eng = {
   e1:"Hydrogen",
@@ -43,8 +49,14 @@ var eng = {
   n1:"Protons",
   n2:"Neutrons",
   n3:"Electrons",
+  n5:"Atomic number",
+  n6:"Atomic weight",
+  n7:"Atomic mass",
+  n8:"First shell",
+  n9:"Second shell",
+  n10:"Third shell",
 };
-//Variables used to change the language of the rest of the elements, aside from the buttons.
+//Variables used to change the language of the rest of the elements, aside from the buttons.The values are not important, the names of the properties are, because those will be compared to each of the language variables (eng, esp) and if they coincide the array values will adopt the value of the key that has the same name inside the language variable. The values in those arrays will be used to display the different translations of the words, in the p5 canvas and the HTML.
 var names = {
   e1:"",
   e2:"",
@@ -64,18 +76,15 @@ var names = {
   e16:"",
   e17:"",
   e18:"",
-  n1:"Protons",
-  n2:"Neutrons",
-  n3:"Electrons",
+  n1:"",
+  n2:"",
+  n3:"",
   n5:"",
   n6:"",
   n7:"",
   n8:"",
   n9:"",
   n10:"",
-  n11:"",
-  n11:"",
-  n12:"",
 };
 
 var elarr = document.getElementsByClassName("element");

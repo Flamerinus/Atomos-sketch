@@ -6,8 +6,6 @@ var proto1 = [];
 var neutro1 = [];
 var electro1 = [];
 var muestras = [];
-//Variables that determine the position of the description box on the canvas.
-var boxx=10, boxy=10;
 //function that creates the protons, neutrons and electrons, and sets the right angles.
 function crear() {
 			//offsets the initial neutron angle by 90º so that in the Helium and similar atoms they don't "overlap" and fill the nucleus in a more homogeneous way.
@@ -143,6 +141,8 @@ var atomo = {//big container for every variable of the virtual atom drawn on the
 	natomico: 1,
 	masa: 1,
 	peso: 1.008,
+
+	nucleusd1:100,
 
 	anguloproton: 0,
 	anguloproton2: 0,
@@ -521,65 +521,92 @@ function Neutron(x, y) {
 function drawparticles (){
 		fill(nucleuscol);
 		stroke(nucstrokecol);
-		ellipse(atomo.x, atomo.y, 100, 100); //nucleus
+    //Checks to see what the number of the element is, thus the protons there will be inside the nucleus, and modifies its size depending on that number.
+		if(atomo.num1 == 1){
+			atomo.nucleusd1 = 30;
+		}else if (atomo.num1 > 1 && atomo.num1 < 9) {
+			atomo.nucleusd1 = 65;
+		}else {
+			atomo.nucleusd1 = 100;
+		}
+		ellipse(atomo.x, atomo.y, atomo.nucleusd1, atomo.nucleusd1); //nucleus
 
 	 	//These for() loops trigger the draw function of every particle stored in it's corresponding array. Given that this is called inside the draw() main function of p5.js below, it is triggered every frame, so everything is drawn every frame, thus allowing for the coordinates of each element to change and be seen as animated.
 		for(var i = 0; i < electro1.length; i++) {
 			electro1[i].dibujar();
 			electro1[i].mover();
 			}
-		for(var i = 0; i < proto1.length; i++) {
-			proto1[i].dibujar();
-			proto1[i].mover();
-			}
 		for(var i = 0; i < neutro1.length; i++) {
 			neutro1[i].dibujar();
 			neutro1[i].mover();
 			}
+		for(var i = 0; i < proto1.length; i++) {
+  			proto1[i].dibujar();
+  			proto1[i].mover();
+  			}
 		for(var i = 0; i < muestras.length; i++) {
 			muestras[i].dibujar();
 			muestras[i].mover();
 			}
 
 }
-//This draws the little box where the characteristics of the atom being displayed are shown. It uses p5.js functions to draw on the p5 canvas. The fill and stroke functions are kind of self-explanatory, you use them before you draw text or shapes, so that the fill and stroke colors get used on them. If you do not reset them or change them, they will stay the same for everything you draw afterwards. There is documentation about all of the functions in the p5.js library.
-
+//This draws the little box where the characteristics of the atom being displayed are shown. It uses p5.js functions to draw on the p5 canvas. The fill and stroke functions are kind of self-explanatory, you use them before you draw text or shapes, so that the fill and stroke colors get used on them. If you do not reset them or change them, they will stay the same for everything you draw afterwards. There is documentation about all of the functions in the p5.js library.I tried to make everything relative to the box's x and y and its width and height, so that moving or resizing it wouldn't break the visual consistency.
 function elembox() {
-		fill(boxcol);
+	//Variables that determine the position and size of the description box on the canvas.If you modify these 4 numbers, the box will move(so will everything inside it) and change its size.
+	var boxx = 50, boxy = 25, boxheight = 100, boxwidth = 70;
+	//The box and outer line
+	fill(boxcol);
   strokeWeight(3);
 	stroke(boxstrokecol);
-	rect(boxx, boxy, 64, 92);
-
+	rect(boxx, boxy, boxwidth, boxheight);
+  //Symbol of the current atom being displayed, main item of the box. Displayed in the center horizontally and 60% height.
 	noStroke();
 	fill(symbolcol);
 	textSize(35);
 	textAlign(CENTER);
-	text(atomo.symbol, 42.5, 60);
-
+	text(atomo.symbol, boxx + boxwidth/2, boxy + boxheight*50/100);
+  //Name of the atom being displayed
 	noStroke();
 	fill(namecol);
 	textSize(12);
-	text(q[atomo.num1-1], 42, 80);
-
+	text(q[atomo.num1-1], boxx + boxwidth/2, boxy + boxheight*70/100);
+  //atomic weight of the element being displayed
 	textSize(12);
 	fill(atomicweightcol);
 	textAlign(LEFT);
-	text(atomo.peso, 11, 99);
+	text(atomo.peso, boxx + 3, boxy + boxheight - 3);
+	text(q[22], boxx - 45, boxy + boxheight + 15);
+  //atomic number
 	fill(atomicncol);
-	text(atomo.natomico, 12, 21);
-
+	text(atomo.natomico, boxx + 3, boxy + 13);
+	text(q[21], boxx - 45, boxy - 5);
+  //atomic mass
 	fill(atomicmasscol);
 	textAlign(RIGHT);
-	text(atomo.masa, 73, 99);
-	//This code is for the upper right corner of the box, where the electron configuration is displayed. If the number is greater than 10 then it displays the first shell's 2 electrons and the second shell's 8 electrons always, and then it takes the number of electrons the element has, subtracts the 10 already being displayed and shows it below. So Magnesium shows 2,8,2 = 2,8 and 12-10.
+	text(atomo.masa, boxx + boxwidth - 3, boxy + boxheight - 3);
+	text(q[23], boxx + boxwidth + 50, boxy + boxheight + 15);
+	//This code is for the upper right corner of the box, where the electron configuration is displayed. If the number is greater than 10 then it displays the first shell's 2 electrons and the second shell's 8 electrons always, and then it takes the number of electrons the element has, subtracts the 10 already being displayed and shows it below. So Magnesium shows 2,8,2 = 2,8 and 12-10. It also displays the description depending on the case.
 	if(atomo.electrones > 10) {
 		textAlign(RIGHT);
 		textSize(12);
-		fill(0);
-	    text(2, 73, 21);
-		text(8, 73, 33);
-		text(atomo.electrones - 10, 73, 46);
-    //This part draws the grey guide lines for the shells, and in this case as the atom has more then 10 electrons, it has to draw the 3 of them at their corresponding radii, which of course can be changed by modifying the corresponding radius variables, which as you can see are multiplied by 2, given that the "ellipse()" function of p5.js takes the "minor/major axis" of the ellipse as the 3rd and 4th parameters, by default, and I didn't bother to change it. In our case they have the same value as we are trying to draw a circle, and both become the diameter of that circle. The sin/cos functions use radii not diameters, thus the multiplication.
+		fill(electronconfcol);
+	  text(2, boxx + boxwidth -3, boxy + 13);
+		text(8, boxx + boxwidth -3, boxy + 25);
+		text(atomo.electrones - 10, boxx + boxwidth -3, boxy + 37);
+    //Descriptions
+		textAlign(LEFT);
+		text(q[24], boxx + boxwidth + 20, boxy - 5);
+		stroke(0);
+    line(boxx + boxwidth + 4, boxy + 7, boxx + boxwidth + 17, boxy - 10);
+		line(boxx + boxwidth + 4, boxy + 20, boxx + boxwidth + 17, boxy + 20);
+		line(boxx + boxwidth + 4, boxy + 32, boxx + boxwidth + 17, boxy + 50);
+    noStroke();
+		text(q[25], boxx + boxwidth + 20, boxy + 25);
+
+		text(q[26], boxx + boxwidth + 20, boxy + 55);
+		textAlign(RIGHT);
+
+		//This part draws the grey guide lines for the shells, and in this case as the atom has more then 10 electrons, it has to draw the 3 of them at their corresponding radii, which of course can be changed by modifying the corresponding radius variables, which as you can see are multiplied by 2, given that the "ellipse()" function of p5.js takes the "minor/major axis" of the ellipse as the 3rd and 4th parameters, by default, and I didn't bother to change it. In our case they have the same value as we are trying to draw a circle, and both become the diameter of that circle. The sin/cos functions use radii not diameters, thus the multiplication.
 		noFill();
 		stroke(shellcol);
 		ellipse(atomo.x, atomo.y, atomo.radiograndeelectron * 2, atomo.radiograndeelectron * 2); //2nd shell
@@ -591,8 +618,18 @@ function elembox() {
 		textSize(12);
 		fill(electronconfcol);
 		noStroke();
-		text(2, 73, 21);
-		text(atomo.electrones - 2, 73, 33);
+		text(2, boxx + boxwidth -3, boxy + 13);
+		text(atomo.electrones - 2, boxx + boxwidth -3, boxy + 25);
+    //Descriptions
+		textAlign(LEFT);
+		text(q[24], boxx + boxwidth + 20, boxy - 5);
+		stroke(0);
+    line(boxx + boxwidth + 4, boxy + 7, boxx + boxwidth + 17, boxy - 10);
+		line(boxx + boxwidth + 4, boxy + 20, boxx + boxwidth + 17, boxy + 20);
+    noStroke();
+		text(q[25], boxx + boxwidth + 20, boxy + 25);
+		textAlign(RIGHT);
+    //Shells
 		noFill();
 		stroke(shellcol);
 		//Here only the 2 inner shells are drawn given that the atom has between 3 and 10 electrons.
@@ -604,7 +641,15 @@ function elembox() {
 		textSize(12);
 		fill(electronconfcol);
 		noStroke();
-		text(atomo.electrones, 73, 21);
+		text(atomo.electrones, boxx + boxwidth -3, boxy + 13);
+    //Descriptions
+		textAlign(LEFT);
+		stroke(0);
+		line(boxx + boxwidth + 4, boxy + 7, boxx + boxwidth + 17, boxy + 7);
+    noStroke();
+		text(q[24], boxx + boxwidth + 20, boxy + 12);
+		textAlign(RIGHT);
+		//1st Shell
 		noFill();
 		stroke(shellcol);
 		//Here only the inner shell is drawn as the atom has 1 or 2 electrons.
@@ -615,7 +660,6 @@ function elembox() {
 //Variables holding the color object values of the different elements. They are declared here without value, and assigned value inside setup(). Explanation in setup() comments.
 var neutroncol = "", protoncol = "", electroncol = "",
 
-
 nucleuscol = "", nucstrokecol = "", shellcol = "", pluscol = "", minuscol = "",
 
 boxcol = "", symbolcol = "", boxstrokecol = "", atomicncol = "", atomicweightcol = "",
@@ -625,24 +669,23 @@ backgroundcol = "",
 muestrascol = "";
 //This is one of the 2 main functions of p5.js. It gets triggered at the beginning before anything else, and only once.
 function setup() {
-	//this sets the frame rate at which the next function draw() will be rendered.
+	//sets the frame rate at which the next function draw() will be rendered.
 	frameRate(60);
 	//This creates the p5.js canvas on which everything will be drawn, using the variables we declared at the beginning.
 	var canvas = createCanvas(canvwidth, canvheight);
 	//This sets the HTML element inside of which the canvas will sit.
 	canvas.parent("centro");
-
 		//This sets the angle mode for the p5.js draw() function. Default is RADIANS, check documentation for more info.
 	angleMode(DEGREES);
 
-	//Variables storing p5.js color objects, used to make it easier to change the different elements' colors without looking for them throughout the code. Change values here, save, and watch the magic happen :D They are assigned values here, and not outside the setup function where they were first declared, because when javascript evaluates the script it does not understand  the color() function of p5.js, or any other p5 function, before the p5 libraries have been loaded. And the variables need to be declared outside first, because we need them to be global in order to use them in our functions. However, if we use any of the p5 functions in our global functions, we need to call our functions through setup() or draw(), given that these are the only 2 main functions that can interpret p5.js functions and keywords.
+	//Variables storing p5.js color objects, used to make it easier to change the different elements' colors without looking for them throughout the code. Change values here, save, and watch the magic happen :D They are assigned values here, and not outside the setup function where they were first declared, because when javascript evaluates the script it does not understand  the color() function of p5.js, or any other p5 function, before the p5 libraries have been loaded. And the variables need to be declared outside first, because we need them to be global in order to use them in our functions. However, if we use any of the p5 functions in our global functions, we need to call our functions through setup() or draw(), given that these are the only 2 functions that can interpret p5.js functions and keywords.
 	// As a side note, in my observatios, this approach is only useful if you are trying to use color() with (R,G,B,alpha): x = color(12,33,128,150); because the hex mode x = color("#407026") works exactly the same without the p5.js color() object: using var x = "#407026"; and then fill(x); in a function called inside draw() works just fine.
 	protoncol = color("#31cce8");
 	neutroncol = color("#407026");
 	electroncol = color("#f9bd03");
 
 	nucleuscol = color("#999683");
-	nucstrokecol = color("#000000");
+	nucstrokecol = color(255,255,255,128);//RGBAlpha 0-255
 	shellcol = color(0,0,0,30);//RGBAlpha 0-255
 	pluscol = color("#ffffff");
 	minuscol = color("#ffffff");
@@ -651,18 +694,18 @@ function setup() {
 	symbolcol = color("#000000");
 	boxstrokecol = color("#000000");
 	atomicncol = color("#31cce8");
-	atomicweightcol = color("#e34a06");
-	atomicmasscol = color("#000000");
-	electronconfcol = color("#000000");
+	atomicweightcol = color("#000000");
+	atomicmasscol = color("#ffffff");
+	electronconfcol = color("#f9bd03");
 	namecol = color("#000000");
 
 	backgroundcol = color("#999683");
 	muestrascol = color("#ffffff");
-	muestraspcol = color("#31cce8");
-	muestrasncol = color("#407026");
-	muestrasecol = color("#f9bd03");
+	muestraspcol = color("#ffffff");
+	muestrasncol = color("##ffffff");
+	muestrasecol = color("##ffffff");
 
-	//Here we push 1 element of each type in the "muestras[]" array so that they are displayed at the bottom, and we do it here inside setup() because their origin will not be modified by any part of the code.
+	//Here we push 1 element of each type in the "muestras[]" array so that they are displayed in the bottom left corner, and we do it here inside setup() because they only need to be created once, and will stay there permanently.
 	muestras.push(new Proton(10, canvheight - 60));
 	muestras.push(new Neutron(10, canvheight - 35));
 	muestras.push(new Electron(10, canvheight - 10, 0));
