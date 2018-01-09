@@ -11,44 +11,56 @@
   <script language="javascript" type="text/javascript" src="lang.js"></script>
   <style>
 	  body {padding: 0; margin: 0;}
-	  #tablabotones,#toptable {width: 800px;
+	  #tablabotones,#toptable {
+    width: 800px;
     background-color: #e34a06;}
-
-     #lowercontent {
-       width: 800px;
+    #lowercontent {
+    width: 800px;
     margin: auto;
-    padding: 10px;
-
-    }
+    padding: 10px;}
     h1 {
     text-transform: uppercase;
     color: #e34a06;
-
-    text-align: center;
-    }
+    text-align: center;}
+    h3 {
+    text-transform: uppercase;
+    color: #999683;
+    text-align: center;}
     p {
     text-align: justify;
-    letter-spacing: 0px;
-    }
+    letter-spacing: 0px;}
 	  #botones1,#botones3,#botones5 {
-		  			text-align: left;
-		  			}
+		text-align: left;}
 	  #botones2,#botones4,#botones6,#toptable {
-		  			text-align: right;
-		  			}
-
+		text-align: right;}
 	  button { width:85px;}
-	    #centro {   display:flex;
-		  			justify-content:center;
-	  			    background-color:#999683;  }
-
-      #top {   display:flex;
-                    justify-content:center;
-                      background-color:#e34a06;  }
-
-      #maindiv {   display:flex;
-		  			justify-content:center;
-	  			    background-color:#e34a06;  }
+	  #centro {   display:flex;
+		justify-content:center;
+	  background-color:#999683;}
+    #top {
+    display:flex;
+    justify-content:center;
+    background-color:#e34a06;}
+    #maindiv {
+    display:flex;
+		justify-content:center;
+	  background-color:#e34a06;}
+a:link {
+    color: #407026;
+    background-color: transparent;
+    text-decoration: none;}
+a:visited {
+    color: #999683;
+    background-color: transparent;
+    text-decoration: none;}
+a:hover {
+    color: #31cce8;
+    background-color: transparent;
+    text-decoration: underline;}
+a:active {
+    color: #f9bd03;
+    background-color: transparent;
+    text-decoration: underline;}
   </style>
 </head>
 
@@ -107,19 +119,8 @@
 	</table>
 	</div>
   <div id="lowercontent">
-    <h1>Átomos</h1>
-    <p>The aim of this script is to aid with basic visual understanding of the atom, its subatomic particles, and their simplified representation. (I used it to learn javascript & p5.js, <a href="https://github.com/Flamerinus/Atomos-sketch" target="_blank">here is the code on GitHub</a>.)
-    <br>It's a simple program that shows a small part of the periodic table, with a visual representation of the atom, displayed in the basic <strong>Bohr model</strong>.</br>
-  <ul>
-    <li>The general size of the atom is <strong>not</strong> to scale and neither the shape or the behavior of the subatomic particles are realistic.</li>
-      <li>The nucleus of the atom is much smaller than it appears here, compared to the size of the entire atom, and it does not have a case, shell or any type of boundry around it.</li>
-    <li>Protons and neutrons inside the nucleus are not really organized in shells of any type but  electrons do get organized in discrete shells around the nucleus in real atoms.</li>
-    <li>The size and mass of the protons and neutrons is much greater than that of the electrons, even though they appear to be the same size in this model.</li>
-    <li>None of them are really shaped like "balls" or behave in this way, overlapping, dancing around, or spinning in different directions.</li>
-    <li>The visual representation is meant to indicate how many units of each particle are inside the nucleus and the outer shells, for each atom.</li>
-  </ul>
-    All this is done for convenience and visual clarity, as this is not intended as an accurate model of real atoms.</p>
-  </div>
+    
+</div>
 <script language="javascript" type="text/javascript">goeng();</script>
 </body>
 </html>

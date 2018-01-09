@@ -388,7 +388,7 @@ var atomo = {//big container for every variable of the virtual atom drawn on the
 				proto1 = [];
 				neutro1 = [];
 				electro1 = [];
-				//Now to calculate the atomic mass of each element we add the number of protons and the number of electrons, as this is displayed in the box by the elembox() function, alongside the name, symbol, atomic weight, atomic number and electron configuration of each atom
+				//Now to calculate the mass number of each element we add the number of protons and the number of electrons, as this is displayed in the box by the elembox() function, alongside the name, symbol, atomic weight, atomic number and electron configuration of each atom
 				atomo.masa = atomo.protones + atomo.neutrones;
 				//after setting every variable we trigger the crear() function which  creates the proton, neutron and electron objects at the different positions and angles, inside the nucleus, and in the electron shells and pushes them in their corresponding arrays. The objects are described below, and they have their own draw function as right now they are only objects inside an array, and have x and y coordinates, but no visual representation.
 				crear();
