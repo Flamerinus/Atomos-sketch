@@ -205,7 +205,7 @@ Fuente de la imagen: <a href="https://es.wikipedia.org/wiki/%C3%81tomo" target="
 <h3>FAQ</h3>
 <p>
 <dl>
-<dt>Q: Qué es el <a href="https://en.wikipedia.org/wiki/Atomic_number" target="_blank">número atómico</a> de un átomo?</dt>
+<dt>Q: Qué es el <a href="https://es.wikipedia.org/wiki/N%C3%BAmero_at%C3%B3mico" target="_blank">número atómico</a> de un átomo?</dt>
 <dd>A: El número atómico de un átomo o Z (de la palabra alemana "Zahl" que significa "número") es el número de protones del átomo y es unico a cada elemento. Es la caracteristica que define cada átomo.<br>
 Si un átomo tiene un número Z de 8 siempre será oxígeno y todos los átomos de oxígeno y sus variantes tendrán siempre 8 protones.</dd><hr>
 <dt>Q: Por qué algunos átomos tienen más neutrones que protones/electrones?</dt>
@@ -215,7 +215,7 @@ Si un átomo tiene un número Z de 8 siempre será oxígeno y todos los átomos 
 </dd><hr>
 <dt>Q: Qué es el <a href="https://es.wikipedia.org/wiki/N%C3%BAmero_m%C3%A1sico" target="_blank">número másico</a> de un átomo?</dt>
  <dd>A: El número másico A (de la palabra alemana "Atomgewicht" qué significa "peso atómico", cosa que este numero no es) es el número de protones Z y neutrones N que tiene un átomo. A = Z + N. Es único a cada uno de los isótopos de un elemento, así que los distintos isótopos de un mismo elemento tienen distintos números másicos.</dd><hr>
-<dt>Q: Qué es la <a href="https://en.wikipedia.org/wiki/Atomic_mass" target="_blank">masa atómica</a> de un átomo?</dt>
+<dt>Q: Qué es la <a href="https://es.wikipedia.org/wiki/Masa_at%C3%B3mica" target="_blank">masa atómica</a> de un átomo?</dt>
 <dd>A: La masa atómica de un átomo tiene casi el mismo valor que el número másico, siendo un poco menor que este.<br>
 Se da en "<a href="hhttps://es.wikipedia.org/wiki/Unidad_de_masa_at%C3%B3mica" target="_blank">unidades de masa átomica unificada</a>" (u o Da) y representa la masa del átomo, dada principalmente por los protones y los neutrones, ya que los electrones tienen una participación insignificantemente pequeña a la masa total del átomo. También es única a cada isótopo.
 </dd><hr>
