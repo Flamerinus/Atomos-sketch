@@ -178,7 +178,7 @@ It is presented in "<a href="https://en.wikipedia.org/wiki/Unified_atomic_mass_u
 <dd>A: Because the <a href="https://iupac.org/" target="_blank">IUPAC</a> says those are the prefered names for these elements.<br>
  If you have a problem with that you can fight me IRL. Come at me BRO!</dd><hr>
 <dt>Q: Are there atoms of the same type that have a different number of electrons?</dt>
-<dd>A: Yes, and in that case, those atoms that are no longer eletrically neutral, are called <a href="https://en.wikipedia.org/wiki/Ion" target="_blank">Ions</a>.<br>
+<dd>A: Yes and in that case, those atoms that are no longer eletrically neutral, are called <a href="https://en.wikipedia.org/wiki/Ion" target="_blank">Ions</a>.<br>
  So ions are like isotopes but instead of varying the number of neutrons, you vary the number of electrons a certain atom has, in order to create different ions.<br>
  The ones you create by removing electrons are called cations (+) and the ones you create by adding electrons are called anions (-).</dd>
 </dl>
@@ -227,7 +227,7 @@ Se da en "<a href="hhttps://es.wikipedia.org/wiki/Unidad_de_masa_at%C3%B3mica" t
 <dd>A: Con.<a href="https://www.hipercor.es/descubre/images/hipercor/208814/tortilla-de-patata-con-cebolla_0.jpg" target="_blank">Tortilla</a><br>
 </dd><hr>
 <dt>Q: Existen átomos del mismo elemento con un número diferente de electrones?</dt>
-<dd>A: Sí, y en ese caso, esos átomos que ya no son eléctricamente neutros, son llamados <a href="https://es.wikipedia.org/wiki/Ion" target="_blank">Iones</a>.<br>
+<dd>A: Sí y en ese caso, esos átomos que ya no son eléctricamente neutros, son llamados <a href="https://es.wikipedia.org/wiki/Ion" target="_blank">Iones</a>.<br>
  Los iones son cómo los isótopos pero en lugar de variar la cantidad de neutrones, en este caso variamos la cantidad de electrones que tiene un átomo, para crear distintos iones.<br>
 Los iones creados quitando electrones de un átomo se llaman cationes (+) y los creados añadiendo electrones a un átomo se llaman aniones (-).</dd>
 </dl>
