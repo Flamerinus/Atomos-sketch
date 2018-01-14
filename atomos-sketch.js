@@ -1,3 +1,4 @@
+"use strict";
 /*variables that will determine the width and height of the canvas object
 used by the p5.js library to draw. It is rendered in the setup() function, at
 the end of the document.*/
@@ -10,6 +11,8 @@ var electro1 = [];
 var muestras = [];
 //creates the protons, neutrons and electrons, and sets the right angles.
 function crear() {
+  var x;
+	var y;
 	/*offsets the initial neutron angle by 90º so that in the Helium and similar
 	atoms they don't "overlap" and fill the nucleus in a more homogeneous way.*/
 	atomo.angulorealproton = 0;
@@ -20,7 +23,7 @@ function crear() {
 	we need to draw the electron, by using sin/cos with the radius of the 1st
 	shell and starting point, atomo.x and atomoy, that were set right before.*/
 	if(atomo.electrones <= 2) {
-		for(i = 0; i < atomo.electrones; i++) {
+		for(var i = 0; i < atomo.electrones; i++) {
 			atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron;
 			x = atomo.x;
 			y = atomo.y;
@@ -44,7 +47,7 @@ function crear() {
 		act function depending on the number of electrons on the 2nd shell.
 		It is	manually coded into each element "if/elese if" statement inside that function.*/
 	} else if(atomo.electrones <= 10 && atomo.electrones > 2) {
-		for(i = 0; i < 2; i++) {
+		for(var i = 0; i < 2; i++) {
 			atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron;
 			x = atomo.x;
 			y = atomo.y;
@@ -52,7 +55,7 @@ function crear() {
 			y = y + cos(atomo.angulorealelectron) * atomo.radiopequeelectron;
 			electro1.push(new Electron(x, y, 1));
 		}
-		for(i; i < atomo.electrones; i++) {
+		for(var i; i < atomo.electrones; i++) {
 			atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron2;
 			x = atomo.x;
 			y = atomo.y;
@@ -69,7 +72,7 @@ function crear() {
 		(2+8+8).If the number of elements were to be increased some day, this 3rd
 		shell could hold up to 18 electrons.*/
 	} else if(atomo.electrones >10) {
-		for(i = 0; i < 2; i++) {
+		for(var i = 0; i < 2; i++) {
 			atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron;
 			x = atomo.x;
 			y = atomo.y;
@@ -85,7 +88,7 @@ function crear() {
 			y = y + cos(atomo.angulorealelectron) * atomo.radiograndeelectron;
 			electro1.push(new Electron(x, y, 2));
 		}
-		for(i; i < atomo.electrones; i++) {
+		for(var i; i < atomo.electrones; i++) {
 			atomo.angulorealelectron = atomo.angulorealelectron + atomo.anguloelectron3;
 			x = atomo.x;
 			y = atomo.y;
@@ -96,7 +99,7 @@ function crear() {
 	}
 	/*The same thing is done with the protons, but instead of 3 shells, they are divided in two imaginary shells inside the nucleus. The 1st smaller one takes up to 8 protons and the rest go in a second bigger shell with radius "radiograndeproton", around the small one with radius "radiopequeproton".*/
 	if(atomo.protones <= 8) {
-		for(i = 0; i < atomo.protones; i++) {
+		for(var i = 0; i < atomo.protones; i++) {
 			atomo.angulorealproton = atomo.angulorealproton + atomo.anguloproton;
 			x = atomo.x;
 			y = atomo.y;
@@ -107,7 +110,7 @@ function crear() {
 		}
 	} else if(atomo.protones > 8) {
 
-		for(i = 0; i < 8; i++) {
+		for(var i = 0; i < 8; i++) {
 			atomo.angulorealproton = atomo.angulorealproton + atomo.anguloproton;
 			x = atomo.x;
 			y = atomo.y;
@@ -117,7 +120,7 @@ function crear() {
 
 		}
 
-		for(i; i < atomo.protones; i++) {
+		for(var i; i < atomo.protones; i++) {
 			atomo.angulorealproton = atomo.angulorealproton + atomo.anguloproton2;
 			x = atomo.x;
 			y = atomo.y;
@@ -134,7 +137,7 @@ function crear() {
 	"&&	atomo.neutrones < x" next to the "> 8".This is the case for the other 2
 	creator functions as well.*/
 	if(atomo.neutrones <= 8) {
-		for(i = 0; i < atomo.neutrones; i++) {
+		for(var i = 0; i < atomo.neutrones; i++) {
 			atomo.angulorealneutron = atomo.angulorealneutron + atomo.anguloneutron;
 			x = atomo.x;
 			y = atomo.y;
@@ -144,7 +147,7 @@ function crear() {
 
 		}
 	} else if(atomo.neutrones > 8){
-		for(i = 0; i < 8; i++) {
+		for(var i = 0; i < 8; i++) {
 			atomo.angulorealneutron = atomo.angulorealneutron + atomo.anguloneutron;
 			x = atomo.x;
 			y = atomo.y;
@@ -152,7 +155,7 @@ function crear() {
 			y = y + cos(atomo.angulorealneutron) * atomo.radiopequeneutron;
 			neutro1.push(new Neutron(x, y, neutroncol));
 		}
-		for(i; i < atomo.neutrones; i++) {
+		for(var i; i < atomo.neutrones; i++) {
 			atomo.angulorealneutron = atomo.angulorealneutron + atomo.anguloneutron2;
 			x = atomo.x;
 			y = atomo.y;
@@ -225,210 +228,229 @@ var atomo = {
 		neutrons and electrons, as well as the correct atomic weight, name, symbol
 		and angles for the uniform spread of the protons and electrons in the
 		crear() function, depending on the amount and the shell they are in.*/
-			if(numeroelem === 1) {
-				atomo.neutrones = 0;
-				atomo.anguloproton = 360;
-				atomo.anguloelectron = 360;
-				atomo.anguloelectron2 = 360;
-				atomo.natomico = 1;
-				atomo.peso = 1.008;
-				atomo.symbol = "H";
-			} else if(numeroelem === 2) {
-				atomo.neutrones = 2;
-				atomo.anguloproton = 360/2;
-				atomo.anguloneutron = 360/2;
-				atomo.anguloelectron = 360/2;
-				atomo.natomico = 2;
-				atomo.peso = 4.002;
-				atomo.symbol = "He";
-			}  else if(numeroelem === 3) {
-				atomo.neutrones = 4;
-				atomo.electrones = 3;
-				atomo.anguloproton = 360/3;
-				atomo.anguloneutron = 360/4;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360;
-				atomo.natomico = 3;
-				atomo.peso = 6.94;
-				atomo.symbol = "Li";
-			}  else if(numeroelem === 4) {
-				atomo.neutrones = 5;
-				atomo.electrones = 4;
-				atomo.anguloneutron = 360/5;
-				atomo.anguloproton = 360/4;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/2;
-				atomo.natomico = 4;
-				atomo.peso = 9.012;
-				atomo.symbol = "Be";
-			} else if(numeroelem === 5) {
-				atomo.neutrones = 6;
-				atomo.electrones = 5;
-				atomo.anguloproton = 360/5;
-				atomo.anguloneutron = 360/6;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/3;
-				atomo.natomico = 5;
-				atomo.peso = 10.81;
-				atomo.symbol = "B";
-			}  else if(numeroelem === 6) {
-				atomo.neutrones = 6;
-				atomo.electrones = 6;
-				atomo.anguloproton = 360/6;
-				atomo.anguloneutron = 360/6;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/4;
-				atomo.natomico = 6;
-				atomo.peso = 12.011;
-				atomo.symbol = "C";
-			}  else if(numeroelem === 7) {
-				atomo.neutrones = 7;
-				atomo.electrones = 7;
-				atomo.anguloproton = 360/7;
-				atomo.anguloneutron = 360/7;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/5;
-				atomo.natomico = 7;
-				atomo.peso = 14.007;
-				atomo.symbol = "N";
-			} else if(numeroelem === 8) {
-				atomo.neutrones = 8;
-				atomo.electrones = 8;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/6;
-				atomo.natomico = 8;
-				atomo.peso = 15.999;
-				atomo.symbol = "O";
-			}  else if(numeroelem === 9) {
-				atomo.neutrones = 10;
-				atomo.electrones = 9;
-				atomo.anguloproton2 = 360/1;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/2;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/7;
-				atomo.natomico = 9;
-				atomo.peso = 18.998;
-				atomo.symbol = "F";
-			}  else if(numeroelem === 10) {
-				atomo.neutrones = 10;
-				atomo.electrones = 10;
-				atomo.anguloproton2 = 360/2;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/2;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/8;
-				atomo.natomico = 10;
-				atomo.peso = 20.179;
-				atomo.symbol = "Ne";
-			} else if(numeroelem === 11) {
-				atomo.neutrones = 12;
-				atomo.electrones = 11;
-				atomo.anguloproton2 = 360/3;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/4;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/8;
-				atomo.anguloelectron3 = 360;
-				atomo.natomico = 11;
-				atomo.peso = 22.989;
-				atomo.symbol = "Na";
-			}  else if(numeroelem === 12) {
-				atomo.neutrones = 12;
-				atomo.electrones = 12;
-				atomo.anguloproton2 = 360/4;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/4;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/8;
-				atomo.anguloelectron3 = 360/2;
-				atomo.natomico = 12;
-				atomo.peso = 24.305;
-				atomo.symbol = "Mg";
-			}  else if(numeroelem === 13) {
-				atomo.neutrones = 14;
-				atomo.electrones = 13;
-				atomo.anguloproton2 = 360/5;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/6;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/8;
-				atomo.anguloelectron3 = 360/3;
-				atomo.natomico = 13;
-				atomo.peso = 26.981;
-				atomo.symbol = "Al";
-			} else if(numeroelem === 14) {
-				atomo.neutrones = 14;
-				atomo.electrones = 14;
-				atomo.anguloproton2 = 360/6;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/6;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/8;
-				atomo.anguloelectron3 = 360/4;
-				atomo.natomico = 14;
-				atomo.peso = 28.085;
-				atomo.symbol = "Si";
-			}  else if(numeroelem === 15) {
-				atomo.neutrones = 16;
-				atomo.electrones = 15;
-				atomo.anguloproton2 = 360/7;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/8;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/8;
-				atomo.anguloelectron3 = 360/5;
-				atomo.natomico = 15;
-				atomo.peso = 30.973;
-				atomo.symbol = "P";
-			} else if(numeroelem === 16) {
-				atomo.protones = 16;
-				atomo.neutrones = 16;
-				atomo.electrones = 16;
-				atomo.anguloproton2 = 360/8;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/8;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/8;
-				atomo.anguloelectron3 = 360/6;
-				atomo.natomico = 16;
-				atomo.peso = 32.06;
-				atomo.symbol = "S";
-			}  else if(numeroelem === 17) {
-				atomo.neutrones = 18;
-				atomo.electrones = 17;
-				atomo.anguloproton2 = 360/9;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/10;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/8;
-				atomo.anguloelectron3 = 360/7;
-				atomo.natomico = 17;
-				atomo.peso = 35.45;
-				atomo.symbol = "Cl";
-			}  else if(numeroelem === 18) {
-				atomo.neutrones = 22;
-				atomo.anguloproton2 = 360/10;
-				atomo.anguloproton = 360/8;
-				atomo.anguloneutron = 360/8;
-				atomo.anguloneutron2 = 360/12;
-				atomo.anguloelectron = 360/2;
-				atomo.anguloelectron2 = 360/8;
-				atomo.anguloelectron3 = 360/8;
-				atomo.natomico = 18;
-				atomo.peso = 39.948;
-				atomo.symbol = "Ar";
+			switch(numeroelem) {
+        case 1:
+				    atomo.neutrones = 0;
+				    atomo.anguloproton = 360;
+    				atomo.anguloelectron = 360;
+    				atomo.anguloelectron2 = 360;
+    				atomo.natomico = 1;
+    				atomo.peso = 1.008;
+    				atomo.symbol = "H";
+            break;
+			case 2:
+    				atomo.neutrones = 2;
+    				atomo.anguloproton = 360/2;
+    				atomo.anguloneutron = 360/2;
+    				atomo.anguloelectron = 360/2;
+    				atomo.natomico = 2;
+    				atomo.peso = 4.002;
+    				atomo.symbol = "He";
+            break;
+    	case 3:
+    				atomo.neutrones = 4;
+    				atomo.electrones = 3;
+    				atomo.anguloproton = 360/3;
+    				atomo.anguloneutron = 360/4;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360;
+    				atomo.natomico = 3;
+    				atomo.peso = 6.94;
+    				atomo.symbol = "Li";
+            break;
+    	case 4:
+    				atomo.neutrones = 5;
+    				atomo.electrones = 4;
+    				atomo.anguloneutron = 360/5;
+    				atomo.anguloproton = 360/4;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/2;
+    				atomo.natomico = 4;
+    				atomo.peso = 9.012;
+    				atomo.symbol = "Be";
+            break;
+    	case 5:
+    				atomo.neutrones = 6;
+    				atomo.electrones = 5;
+    				atomo.anguloproton = 360/5;
+    				atomo.anguloneutron = 360/6;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/3;
+    				atomo.natomico = 5;
+    				atomo.peso = 10.81;
+    				atomo.symbol = "B";
+            break;
+    	case 6:
+    				atomo.neutrones = 6;
+    				atomo.electrones = 6;
+    				atomo.anguloproton = 360/6;
+    				atomo.anguloneutron = 360/6;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/4;
+    				atomo.natomico = 6;
+    				atomo.peso = 12.011;
+    				atomo.symbol = "C";
+            break;
+    	case 7:
+    				atomo.neutrones = 7;
+    				atomo.electrones = 7;
+    				atomo.anguloproton = 360/7;
+    				atomo.anguloneutron = 360/7;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/5;
+    				atomo.natomico = 7;
+    				atomo.peso = 14.007;
+    				atomo.symbol = "N";
+            break;
+    	case 8:
+    				atomo.neutrones = 8;
+    				atomo.electrones = 8;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/6;
+    				atomo.natomico = 8;
+    				atomo.peso = 15.999;
+    				atomo.symbol = "O";
+            break;
+    	case 9:
+    				atomo.neutrones = 10;
+    				atomo.electrones = 9;
+    				atomo.anguloproton2 = 360/1;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/2;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/7;
+    				atomo.natomico = 9;
+    				atomo.peso = 18.998;
+    				atomo.symbol = "F";
+            break;
+    	case 10:
+    				atomo.neutrones = 10;
+    				atomo.electrones = 10;
+    				atomo.anguloproton2 = 360/2;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/2;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/8;
+    				atomo.natomico = 10;
+    				atomo.peso = 20.179;
+    				atomo.symbol = "Ne";
+            break;
+    	case 11:
+    				atomo.neutrones = 12;
+    				atomo.electrones = 11;
+    				atomo.anguloproton2 = 360/3;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/4;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/8;
+    				atomo.anguloelectron3 = 360;
+    				atomo.natomico = 11;
+    				atomo.peso = 22.989;
+    				atomo.symbol = "Na";
+            break;
+    	case 12:
+    				atomo.neutrones = 12;
+    				atomo.electrones = 12;
+    				atomo.anguloproton2 = 360/4;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/4;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/8;
+    				atomo.anguloelectron3 = 360/2;
+    				atomo.natomico = 12;
+    				atomo.peso = 24.305;
+    				atomo.symbol = "Mg";
+            break;
+    	case 13:
+    				atomo.neutrones = 14;
+    				atomo.electrones = 13;
+    				atomo.anguloproton2 = 360/5;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/6;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/8;
+    				atomo.anguloelectron3 = 360/3;
+    				atomo.natomico = 13;
+    				atomo.peso = 26.981;
+    				atomo.symbol = "Al";
+            break;
+    	case 14:
+    				atomo.neutrones = 14;
+    				atomo.electrones = 14;
+    				atomo.anguloproton2 = 360/6;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/6;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/8;
+    				atomo.anguloelectron3 = 360/4;
+    				atomo.natomico = 14;
+    				atomo.peso = 28.085;
+    				atomo.symbol = "Si";
+            break;
+    	case 15:
+    				atomo.neutrones = 16;
+    				atomo.electrones = 15;
+    				atomo.anguloproton2 = 360/7;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/8;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/8;
+    				atomo.anguloelectron3 = 360/5;
+    				atomo.natomico = 15;
+    				atomo.peso = 30.973;
+    				atomo.symbol = "P";
+            break;
+    	case 16:
+    				atomo.protones = 16;
+    				atomo.neutrones = 16;
+    				atomo.electrones = 16;
+    				atomo.anguloproton2 = 360/8;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/8;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/8;
+    				atomo.anguloelectron3 = 360/6;
+    				atomo.natomico = 16;
+    				atomo.peso = 32.06;
+    				atomo.symbol = "S";
+            break;
+    	case 17:
+    				atomo.neutrones = 18;
+    				atomo.electrones = 17;
+    				atomo.anguloproton2 = 360/9;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/10;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/8;
+    				atomo.anguloelectron3 = 360/7;
+    				atomo.natomico = 17;
+    				atomo.peso = 35.45;
+    				atomo.symbol = "Cl";
+            break;
+    	case 18:
+    				atomo.neutrones = 22;
+    				atomo.anguloproton2 = 360/10;
+    				atomo.anguloproton = 360/8;
+    				atomo.anguloneutron = 360/8;
+    				atomo.anguloneutron2 = 360/12;
+    				atomo.anguloelectron = 360/2;
+    				atomo.anguloelectron2 = 360/8;
+    				atomo.anguloelectron3 = 360/8;
+    				atomo.natomico = 18;
+    				atomo.peso = 39.948;
+    				atomo.symbol = "Ar";
+            break;
 			}
 		/*Some of the above could have been done with less code, but given that
 		each atom has it's own name, symbol and atomic weight,
@@ -442,7 +464,7 @@ var atomo = {
 				neutrons and electrons, which obviously get created in frame 1 because
 				this function gets triggered by the setup function before anything else
 				is created or drawn.
-				It redeclares them as arrays with no values so that the previous
+				It sets their content to no values so that the previous
 				particles that were created inside are eliminated and the new ones
 				created by the crear() function below, don't stack on top of the old
 				ones.*/
@@ -949,9 +971,9 @@ function draw() {
 	textSize(15);
 	fill(muestraspcol);
 	//the text refers to the array "q[]" located in lang.js.
-	text( q[18] + ":" + atomo.protones, 20, canvheight - 55);
+	text( q[18] + ": " + atomo.protones, 20, canvheight - 55);
 	fill(muestrasncol);
-	text(q[19] + ":" +  atomo.neutrones, 20, canvheight - 30);
+	text(q[19] + ": " +  atomo.neutrones, 20, canvheight - 30);
 	fill(muestrasecol);
-	text(q[20] + ":" + atomo.electrones, 20, canvheight - 5);
+	text(q[20] + ": " + atomo.electrones, 20, canvheight - 5);
 }

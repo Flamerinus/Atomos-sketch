@@ -1,3 +1,4 @@
+"use strict";
 //Variable containing the spanish translations.
 var esp = {
   e1:"Hidrógeno",
@@ -69,7 +70,7 @@ var q = [];
 /*Array containing the key names of object "eng", y1 = [e1,e2,e3...]
 Given that the object "esp" has the exact same keys, another array for those
 values is not needed, this one can be used as a reference.
-But it is imperative that the 2 arrays are kept exactly the same when it comes
+But it is imperative that the 2 objects are kept exactly the same when it comes
 to key names and order, for this to work. */
 var y1 = Object.keys(eng);
 //Function that changes everything to english.
@@ -105,7 +106,7 @@ function goesp(){
     that it is the element at index 0 of elarr[] and the index 0 of y1[] has
     the value of "e1".
     An object's keys and values can be accessed with dots or square brackets.
-    The advantage of square brackets [] is that you can place a string inside
+    The advantage of square brackets [] is that you can place a string inside,
     or another variable. With the dot method, you can't do that.
     So esp.e1 is the same as esp["e1"]. But if you have a ="e1" you cant write
     esp.a, because this will look for a key named "a" inside the object esp.
@@ -113,11 +114,9 @@ function goesp(){
     which is "e1". This is inmensely useful.
 
     In the second for() loop, if any element of y1[] is equal to any element of
-    y1[], which will always happen as they contain the same key names in the
-    same order, then the q[] array value of that same index (k) will be set to
-    contain the value of esp[y1[i]] meaning it will start containing the spanish
-    translation  of that word.
-    All is left to do now is to set the text of any variable to q[0], q[1],
+    y1[], which will always happen, then the q[] array value of that same index (k) will be set to contain the value of esp[y1[i]] meaning it will start
+    containing the spanish translation  of that word.
+    All is left to do now is to set the content of any text field to q[0], q[1],
     q[2]... etc.
     In the goeng() function we do the same thing but instead of setting values
     of q[] as the values of the esp object's keys, we set them as values
@@ -137,7 +136,7 @@ function goesp(){
 }
 
 //English text
-let textoeng = `
+var textoeng = `
 <h1>Átomos</h1>
 <p><img src="imgs/665px-Helium_atom_QM.svg.png" alt="Helium_Wikipedia" style="float:right;width:300px;">
   The aim of this script is to aid with basic visual understanding of the atom, subatomic particles and their simplified representation.<br>
@@ -185,7 +184,7 @@ It is presented in "<a href="https://en.wikipedia.org/wiki/Unified_atomic_mass_u
 </p>
 `;
 //Spanish text
-let textoesp = `
+var textoesp = `
 <h1>Átomos</h1>
 <p><img src="imgs/665px-Helium_atom_QM.svg.png" alt="Helium_Wikipedia" style="float:right;width:300px;">
   El objetivo de este script es ayudar en la comprension visual del átomo, las particulas subatómicas y su representación simplificada.<br>
