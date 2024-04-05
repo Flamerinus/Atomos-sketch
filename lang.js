@@ -1,4 +1,4 @@
-"use strict";
+s"use strict";
 //Variable containing the spanish translations.
 var esp = {
   e1:"Hidrógeno",
@@ -222,8 +222,8 @@ Se da en "<a href="hhttps://es.wikipedia.org/wiki/Unidad_de_masa_at%C3%B3mica" t
    <dd>A: El peso atómico (estándard) o "masa atómica relativa" es la masa media de los átomos de un elemento, dependiendo de su abundancia, en la corteza y atmosfera terrestres.<br>
    Dado que la mayoría de los elementos tienen distintos isótopos aparte del común, este número casi nunca es entero.<br>
    Si tenemos una muestra de oxígeno de la atmosfera terrestre, normalmente contendrá más de un 99% de oxígeno-16, el isótopo común, con 8 neutrones, pero también habrá algúnos isótopos de oxígeno-15, por lo tanto la masa media de todo el conjunto será menor de 16 (15.999).</dd><hr>
-<dt>Q: Te gusta la tortilla de patata con o sin cebolla?</dt>
-<dd>A: Con.<a href="https://www.hipercor.es/descubre/images/hipercor/208814/tortilla-de-patata-con-cebolla_0.jpg" target="_blank">Tortilla</a><br>
+<dt>Q: Perros o gatos?</dt>
+<dd>A: Perros.<a href="/imgs/mokkelius.jpg" target="_blank">Dog</a><br>
 </dd><hr>
 <dt>Q: Existen átomos del mismo elemento con un número diferente de electrones?</dt>
 <dd>A: Sí y en ese caso, esos átomos que ya no son eléctricamente neutros, son llamados <a href="https://es.wikipedia.org/wiki/Ion" target="_blank">Iones</a>.<br>
