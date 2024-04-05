@@ -1,5 +1,4 @@
 # Átomos
-[Click here to see it in action.](http://flamerinus.byethost7.com/atomos/)
 ___
 This is a simple program that displays a small part of the periodic table, with a visual representation of the atom, displayed in the basic **Bohr model**.
 
